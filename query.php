@@ -10,16 +10,12 @@
 /* make & check connection to database*/
 	$db = mysqli_select_db($link,"test3") or die('Unable to selec database');
 
-/* check variables are query safe */
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-	<link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|Marcellus+SC&subset=latin,latin-ext" rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|MarcellusSC&subset=latin,latin-ext" rel='stylesheet' type='text/css'>
 	<title>Query Results</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style1.css" />
 
@@ -27,7 +23,7 @@
     	body {
         font-size: 48px;
       	}
-
+      
     	.button {
 		float: right;
 		position: relative;
@@ -35,7 +31,7 @@
 		}
 
 		#footer{
-			position: absolute;
+			position: fixed;
 			bottom: 10px;
 		}
     </style>
@@ -44,7 +40,7 @@
   <body>
   	<div id="container">
 
-
+			
 			<div id="headcontainer">
 				<div id="topfilmstrip">
 				</div>
@@ -65,18 +61,18 @@
 	if (isset($_POST['state'])){
 		$state=$_POST['state'];
 /*	echo "SELECTION is: " . $state;	*/
-
+	
 /* check submit value */
 	if (($state=="")){
 		echo "No selection made.";
 	}
 
 	else {
-
+		
 /* execute query */
 		$query="SELECT park.park_Name, address.street, address.city, address.state, address.zip_Code FROM park JOIN address WHERE (address.park_ID=park.park_ID) AND (address.state='$state')";
 		$result = mysqli_query($link,$query);
-
+		
 		if (!$result){
 			echo 'Error fetching results: '.mysqli_error($link);
 		}
@@ -105,29 +101,34 @@
 /* *----------------------------------QUERY 2------------------------------------*/
 	if (isset($_POST['park'])){
 		$park=$_POST['park'];
-	echo "park SELECTION is: " . $park;
-echo nl2br("\n");
+		/*echo "park SELECTION is: " . $park;	
+		echo nl2br("\n");*/
 /* check submit value */
-	if (($park=="")){
-		echo "No selection made for park.";
-	}
-	if (isset($_POST['difficulty'])){
-		$difficulty=$_POST['difficulty'];
-	echo "difficulty SELECTION is: " . $difficulty;
-	echo nl2br("\n");
-}
+		if (($park=="")){
+			echo "No selection made for park.";
+			echo nl2br("\n");
+		}
+		if (isset($_POST['difficulty'])){
+			$difficulty=$_POST['difficulty'];
+			/*	echo "difficulty SELECTION is: " . $difficulty;	
+			echo nl2br("\n");*/
+		}
 
 /* check submit value */
-	if (($difficulty=="")){
-		echo "No selection made for difficulty.";
-	}
+		if (($difficulty=="")){
+			echo "No selection made for difficulty.";
+		}
 
+/* check submit value */
+		if (($difficulty=="")|($park=="")){
+			echo "No selection made for difficulty.";
+		}
 	else {
-
+		
 /* execute query */
 		$query="SELECT trail_Name FROM park JOIN trail WHERE (trail.park_ID=park.park_ID) AND (park.park_Name='$park') AND (trail.difficulty='$difficulty')";
 		$result = mysqli_query($link,$query);
-
+		
 		if (!$result){
 			echo 'Error fetching results: '.mysqli_error($link);
 		}
@@ -152,7 +153,7 @@ echo nl2br("\n");
 
 
 /* *----------------------------------QUERY 3------------------------------------*/
-    if (isset($_POST['park2'])){
+     if (isset($_POST['park2'])){
         $park=$_POST['park2'];
 /*    echo "SELECTION is: " . $park;    */
 
@@ -164,7 +165,7 @@ echo nl2br("\n");
     else {
 
 /* execute query */
-        $query="SELECT camp_Name, hiking, biking, swimming, fishing, boating, kayaking,
+        $query="SELECT hiking, biking, swimming, fishing, boating, kayaking,
                 winter_sports, pets_Allowed, wheelchair_Access, rv_Sites, tent_Sites
                 FROM camp, activity, park
                 WHERE camp.camp_ID = activity.camp_ID
@@ -182,9 +183,8 @@ echo nl2br("\n");
             echo nl2br("\n\n");
 
             while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-								echo 'Camp '. $row['camp_Name'];
                 if($row['hiking'] == 1)
-                  echo nl2br("\n") ."hiking ";
+                  echo "hiking ";
                 if($row['biking'] == 1)
                   echo nl2br("\n") . "biking ";
                 if($row['swimming'] == 1)
@@ -284,9 +284,7 @@ echo nl2br("\n");
         }
 
 }
-
-
-
+/* *----------------------------------END OF QUERIES------------------------------------*/
 
 /* close connection */
 	mysqli_close($link);
@@ -294,8 +292,14 @@ echo nl2br("\n");
 
     	<br/>
 		<div id="returnhome">
-		<a class="button" href="index1.html">Return to home</a>
+			<script>
+			var audio = new Audio("return.mp3");
+			audio.oncanplaythrough = function ( ) { }
+			audio.onended = function ( ) { }
+			</script>
+			<a class="button" href="index1.html" onclick="audio.play ( )">Return to home</a>
 		</div>
+
 		<div id="footer">
 			Copyright &copy; 2016 Team1 SER 234.
 		</div>

@@ -5,179 +5,188 @@
 	<link href='https://fonts.googleapis.com/css?family=Marcellus+SC&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<title>Adventures in Camping</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style1.css" />
-
-<style>
-	li {
-		display: inline;
-		margin-left: 15px;
-		padding: 80px;
-	}
-	.query1 {
-		width: 720px;
-	}
-	.button {
-		float: right;
-	}
-
-	}
-</style>
+	<style>
+		li {
+			display: inline;
+			margin-left: 15px;
+			padding: 80px;
+		}
+		.query1 {
+			width: 720px;
+		}
+		.button {
+			float: right;
+		}
+	</style>
 
 </head>
 
 
 <body>
 	<div id="container">
-			<div id="nav">
-				<ul>
-					<li><a class="selected" href="">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</div>
-
-		<div id="headcontainer">
-			<div id="topfilmstrip">
-			</div>
-			<div id="imagebar">
-			</div>
-			<div id="bottomfilmstrip">
-			</div>
-			<div id="header">
-			<h1>Adventures in Camping</h1>
-			</div>
+		<div id="nav">
+			<ul>
+				<li><a class="selected" href="">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
 		</div>
-
+			
+		<div id="headcontainer">
+			<div id="topfilmstrip"></div>
+			<div id="imagebar"></div>
+			<div id="bottomfilmstrip"></div>
+			<div id="header"><h1>Adventures in Camping</h1></div>
+		</div>
+	
 		<div id="content">
-
-
 			<div id="main">
 				<p>This is our home page and we perform the following 5 queries on our database.</p>
-<hr size="3">
+				<hr size="3">
 
+				<form action="query.php" method="post" />
 
-<form action="query.php" method="post" />
+					<div id="query1">
+						QUERY #1: GIVE ALL PARKS IN FOLLOWING STATE:
 
-<div id="query1">
-QUERY #1: GIVE ALL PARKS IN FOLLOWING STATE:
-
-	<select name="state">;
-		<option value="">Choose...</option>;
-		<option value="Arizona">Arizona</option>;
-	  	<option value="California">California</option>;
-	  	<option value="Illinois">Illinois</option>;
-	  	<option value="New York">New York</option>;
-	  	<option value="Texas">Texas</option>;
-	  	<option value="Wyoming">Wyoming</option>;
-
-	</select>
-
-
-
-<div id="searchbutton">
-<input type="submit" name="submitquery1" value="Submit"/>
-</div>
-</div>
-<br>
-</form>
-<hr size="3">
-
-
-<form action="query.php" method="post" />
-
-<div id="query2">
-QUERY #2: GIVE ALL
-	<select name="difficulty">;
-		<option value="">Choose...</option>;
-		<option value="1">easy</option>;
-	  	<option value="2">moderate</option>;
-	  	<option value="3">difficult</option>;
-
-	</select>
-	 TRAILS IN THE FOLLOWING PARK:
-
-	<select name="park">;
-		<option value="">Choose...</option>;
-		<option value="Brazos Bend State Park">Brazos Bend State Park</option>;
-		<option value="Central Park">Central Park</option>;
-	  	<option value="Grand Canyon National Park">Grand Canyon National Park</option>;
-	  	<option value="Portage Park">Portage Park</option>;
-	  	<option value="Redwood National Park">Redwood National Park</option>;
-	  	<option value="Yellowstone National Park">Yellowstone National Park</option>;
-	</select>
+						<select name="state">;
+							<option value="">Choose...</option>;
+							<option value="Arizona">Arizona</option>;
+						  	<option value="California">California</option>;
+						  	<option value="Illinois">Illinois</option>;
+						  	<option value="New York">New York</option>;
+						  	<option value="Texas">Texas</option>;
+						  	<option value="Wyoming">Wyoming</option>;
+						</select>
 
 
 
-<div id="searchbutton">
-<input type="submit" name="submitquery2" value="Submit"/>
-</div>
-</div>
-<br>
-</form>
-<hr size="3">
+						<div id="searchbutton">
+							<script>
+								var audio = new Audio("sent.mp3");
+								audio.oncanplaythrough = function ( ) { }
+								audio.onended = function ( ) { }
+							</script>
+							<input type="submit" name="submitquery1" value="Submit" onclick="audio.play ( )"/>
+						</div>
 
-<form action="query.php" method="post" />
-
-<div id="query3">
-QUERY #3: GIVE ALL ACTIVITIES IN THE FOLLOWING PARK:
-
-	<select name="park2">;
-		<option value="">Choose...</option>;
-		<option value="Brazos Bend State Park">Brazos Bend State Park</option>;
-		<option value="Central Park">Central Park</option>;
-	  	<option value="Grand Canyon National Park">Grand Canyon National Park</option>;
-	  	<option value="Portage Park">Portage Park</option>;
-	  	<option value="Redwood National Park">Redwood National Park</option>;
-	  	<option value="Yellowstone National Park">Yellowstone National Park</option>;
-	</select>
+					</div>
+					<br>
+				</form>
+				
+				<hr size="3">
 
 
+				<form action="query.php" method="post" />
 
-<div id="searchbutton">
-<input type="submit" name="submitquery3" value="Submit"/>
-</div>
-</div>
-<br>
-</form>
-<hr size="3">
+					<div id="query2">
+						QUERY #2: GIVE ALL 
 
+						<select name="difficulty">;
+							<option value="">Choose...</option>;
+							<option value="1">easy</option>;
+						  	<option value="2">moderate</option>;
+						  	<option value="3">difficult</option>;
+						</select>
+	 					TRAILS IN THE FOLLOWING PARK:
 
-<form action="query.php" method="post" />
+						<select name="park">;
+							<option value="">Choose...</option>;
+							<option value="Brazos Bend State Park">Brazos Bend State Park</option>;
+							<option value="Central Park">Central Park</option>;
+						  	<option value="Grand Canyon National Park">Grand Canyon National Park</option>;
+						  	<option value="Portage Park">Portage Park</option>;
+						  	<option value="Redwood National Park">Redwood National Park</option>;
+						  	<option value="Yellowstone National Park">Yellowstone National Park</option>;
+						</select>
 
-<div id="query4">
-QUERY #4: LIST ALL TRAILS IN THE WESTERN REGION:
+						<div id="searchbutton">
+							<script>
+								var audio = new Audio("sent.mp3");
+								audio.oncanplaythrough = function ( ) { }
+								audio.onended = function ( ) { }
+							</script>
+							<input type="submit" name="submitquery2" value="Submit" onclick="audio.play ( )"/>
+						</div>
 
+					</div>
+					<br>
+				</form>
 
+				<hr size="3">
 
+				<form action="query.php" method="post" />
 
-<div id="searchbutton">
-<input type="submit" name="submitquery4" value="Submit"/>
-</div>
-</div>
-<br>
-</form>
-<hr size="3">
+					<div id="query3">
+						QUERY #3: GIVE ALL ACTIVITIES IN THE FOLLOWING PARK:
 
-<form action="query.php" method="post" />
+						<select name="park2">;
+							<option value="">Choose...</option>;
+							<option value="Brazos Bend State Park">Brazos Bend State Park</option>;
+							<option value="Central Park">Central Park</option>;
+						  	<option value="Grand Canyon National Park">Grand Canyon National Park</option>;
+						  	<option value="Portage Park">Portage Park</option>;
+						  	<option value="Redwood National Park">Redwood National Park</option>;
+						  	<option value="Yellowstone National Park">Yellowstone National Park</option>;
+						</select>
 
-<div id="query5">
-QUERY #5: LIST ALL THE TOP RATED CAMPGROUNDS:
+						<div id="searchbutton">
+							<script>
+								var audio = new Audio("sent.mp3");
+								audio.oncanplaythrough = function ( ) { }
+								audio.onended = function ( ) { }
+							</script>
+						<input type="submit" name="submitquery3" value="Submit" onclick="audio.play ( )"/>
+						</div>
 
+					</div>
+					<br>
+				</form>
 
+				<hr size="3">
 
+				<form action="query.php" method="post" />
 
-<div id="searchbutton">
-<input type="submit" name="submitquery5" value="Submit"/>
-</div>
-</div>
-<br>
-</form>
-<hr size="3">
+					<div id="query4">
+						QUERY #4: LIST ALL TRAILS IN THE WESTERN REGION:
 
+						<div id="searchbutton">
+							<script>
+								var audio = new Audio("sent.mp3");
+								audio.oncanplaythrough = function ( ) { }
+								audio.onended = function ( ) { }
+							</script>
+							<input type="submit" name="submitquery4" value="Submit" onclick="audio.play ( )"/>
+						</div>
 
+					</div>
+					<br>
+				</form>
 
+				<hr size="3">
+
+				<form action="query.php" method="post" />
+
+					<div id="query5">
+						QUERY #5: LIST ALL THE TOP RATED CAMPGROUNDS:
+
+						<div id="searchbutton">
+							<script>
+								var audio = new Audio("sent.mp3");
+								audio.oncanplaythrough = function ( ) { }
+								audio.onended = function ( ) { }
+							</script>
+							<input type="submit" name="submitquery5" value="Submit" onclick="audio.play ( )"/>
+						</div>
+
+					</div>
+					<br>
+				</form>
+
+				<hr size="3">
 
 			</div>
-
+		
 		</div>
 
 		<div id="footer">
