@@ -2,7 +2,8 @@
 <html>
 
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|Marcellus+SC&subset=latin,latin-ext" rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple" rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Marcellus+SC&subset=latin,latin-ext" rel='stylesheet' type='text/css'>
 	<title>Adventures in Camping</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style1.css" />
 
@@ -11,7 +12,8 @@
 		display: inline;
 		margin-left: 15px;
 		padding: 80px;
-	}
+		}
+
 	span {
 		list-style-type: none;
 		font-family: 'Rancho', cursive;
@@ -19,60 +21,74 @@
   		text-shadow: 4px 4px 4px #aaa;
   		float: left;
   		padding: 20px 29px 20px 0px;
-	}
+		}
 
-
-
-	h2 {
+	h2, h4 {
 		text-align: center;
-	}
+		}
 
+	h3{
+		color: #a00000;
+		text-align: center;
+  		font-size: 35px;
+  		line-height: 20px;
+		}
+
+	h4 {
+		font-style: italic;
+		font-family: 'Rancho', cursive;
+  		text-shadow: 4px 4px 4px #aaa;
+  		font-size: 25px;
+  		line-height: 0px;
+		}
+
+	a {
+		text-decoration: none;
+		font-family="Marcellus+SC";
+		}
 </style>
 
 </head>
 
-
 <body>
 	<div id="container">
-			<div id="nav">
-				<ul>
-					<li><a href="index1.html">Home</a></li>
-					<li><a class="selected" href="" />About</a></li>
-					<li><a href="contact.html" />Contact</a></li>
-				</ul>
-			</div>
+		<div id="nav">
+			<ul>
+				<audio id="click"><source src="resources/click.mp3"></audio>
+				<li><a href="home.html" onclick="document.getElementById('click').play()">Home</a></li>
+				<li><a class="selected" href="" onclick="document.getElementById('click').play()">About</a></li>
+				<li><a href="contact.html" onclick="document.getElementById('click').play()">Contact</a></li>
+			</ul>
+		</div>
 			
-			<div id="headcontainer">
-				<div id="topfilmstrip">
-				</div>
-				<div id="imagebar">
-				</div>
-				<div id="bottomfilmstrip">
-				</div>
-				<div id="header">
-				<h1>About Us</h1>
-				</div>
-				
-			</div>
+		<div id="headcontainer">
+			<div id="topfilmstrip"></div>
+			<div id="imagebar"></div>
+			<div id="bottomfilmstrip"></div>
+			<div id="header"><h1>About Us</h1></div>		
+		</div>
 
-			<div id="content">
-				<h2>Arizona State University</h2>
-				<h2>Spring B - SER 324</h2>
-				<h2>Team 1 members:</h2>
-				<ul>
-					<span><div class="font-effect-shadow-multiple">Cesar Avitia</div></span>
-					<span><div class="font-effect-shadow-multiple">Brenda Rearden</div></span>
-					<span><div class="font-effect-shadow-multiple">Cord Rearden</div></span>
-					<span><div class="font-effect-shadow-multiple">Rudi Wever</div</span>
-				</ul>
-			</div>
+		<div id="content">
+			<h2>Arizona State University</h2>
+			<h2>Spring B - SER 324</h2>
+			<h3>Parks & Recreation Database Final Project</h3>
+			<h4><div class="font-effect-shadow-multiple">A Complete Collaboration</div></h4>
+			<h4><div class="font-effect-shadow-multiple">by</div></h4>
+			<h4><div class="font-effect-shadow-multiple">Team 1 members:</div></h4>
+			
+			<ul>
+				<span><div class="font-effect-shadow-multiple">Cesar Avitia</div></span>
+				<span><div class="font-effect-shadow-multiple">Brenda Rearden</div></span>
+				<span><div class="font-effect-shadow-multiple">Cord Rearden</div></span>
+				<span><div class="font-effect-shadow-multiple">Rudi Wever</div</span>
+			</ul>
+		</div>
 
-			<div id="footer">
-			Copyright &copy; 2016 Team1 SER 234.
-			</div>
+		<div id="footer">
+			Copyright &copy; 2016 Team1 SER 234
+		</div>
 
 	</div>
-
 
 </body>
 </html>
