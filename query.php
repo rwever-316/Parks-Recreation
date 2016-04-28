@@ -164,7 +164,7 @@ echo nl2br("\n");
     else {
 
 /* execute query */
-        $query="SELECT hiking, biking, swimming, fishing, boating, kayaking,
+        $query="SELECT camp_Name, hiking, biking, swimming, fishing, boating, kayaking,
                 winter_sports, pets_Allowed, wheelchair_Access, rv_Sites, tent_Sites
                 FROM camp, activity, park
                 WHERE camp.camp_ID = activity.camp_ID
@@ -182,8 +182,9 @@ echo nl2br("\n");
             echo nl2br("\n\n");
 
             while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+								echo 'Camp '. $row['camp_Name'];
                 if($row['hiking'] == 1)
-                  echo "hiking ";
+                  echo nl2br("\n") ."hiking ";
                 if($row['biking'] == 1)
                   echo nl2br("\n") . "biking ";
                 if($row['swimming'] == 1)
