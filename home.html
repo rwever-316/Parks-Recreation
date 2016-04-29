@@ -49,7 +49,7 @@
 				<form action="query.php" method="post" />
 
 					<div id="query1">
-						QUERY #1: GIVE ALL PARKS IN FOLLOWING STATE:
+						QUERY #1: VIEW ALL PARKS IN THE FOLLOWING STATE:
 
 						<select name="state">;
 							<option value="">Choose...</option>;
@@ -81,10 +81,10 @@
 				<form action="query.php" method="post" />
 
 					<div id="query2">
-						QUERY #2: GIVE ALL 
+						QUERY #2: VIEW ALL 
 
 						<select name="difficulty">;
-							<option value="">Choose...</option>;
+							<option value="">All</option>;
 							<option value="1">easy</option>;
 						  	<option value="2">moderate</option>;
 						  	<option value="3">difficult</option>;
@@ -92,7 +92,7 @@
 	 					TRAILS IN THE FOLLOWING PARK:
 
 						<select name="park">;
-							<option value="">Choose...</option>;
+							<option value="">All</option>;
 							<option value="Brazos Bend State Park">Brazos Bend State Park</option>;
 							<option value="Central Park">Central Park</option>;
 						  	<option value="Grand Canyon National Park">Grand Canyon National Park</option>;
@@ -119,7 +119,7 @@
 				<form action="query.php" method="post" />
 
 					<div id="query3">
-						QUERY #3: GIVE ALL ACTIVITIES IN THE FOLLOWING PARK:
+						QUERY #3: VIEW ALL ACTIVITIES IN THE FOLLOWING PARK:
 
 						<select name="park2">;
 							<option value="">Choose...</option>;
@@ -149,9 +149,17 @@
 				<form action="query.php" method="post" />
 
 					<div id="query4">
-						QUERY #4: LIST ALL TRAILS IN THE WESTERN REGION:
-					</div>
+						QUERY #4: VIEW TRAILS IN
 
+						<select name="region">;
+							<option value="">All</option>;
+							<option value="South">Southern</option>;
+						  	<option value="East">Eastern</option>;
+						  	<option value="West">Western</option>;
+						  	<option value="Central">Central</option>;						  	
+						</select>
+
+						REGION(S):
 					<div id="searchbutton">
 						<script>
 							var audio = new Audio("resources/sent.mp3");

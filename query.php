@@ -104,53 +104,88 @@
 
 
 /* *----------------------------------QUERY 2------------------------------------*/
-	if (isset($_POST['park'])){
+		if (isset($_POST['park'])){
 		$park=$_POST['park'];
 		/*echo "park SELECTION is: " . $park;	
 		echo nl2br("\n");*/
 
-/* check submit value */
-		if (($park=="")){
-			echo "No selection made for park.";
-			echo nl2br("\n");
-		}
 		if (isset($_POST['difficulty'])){
 			$difficulty=$_POST['difficulty'];
 			/*	echo "difficulty SELECTION is: " . $difficulty;	
 			echo nl2br("\n");*/
 		}
 
-/* check submit value */
-		if (($difficulty=="")){
-			echo "No selection made for difficulty.";
-		}
-
-		else {
 /* execute query */
-			$query="SELECT trail_Name FROM park JOIN trail WHERE (trail.park_ID=park.park_ID) AND (park.park_Name='$park') AND (trail.difficulty='$difficulty')";
-			$result = mysqli_query($link,$query);
-			
-			if (!$result){
-				echo 'Error fetching results: '.mysqli_error($link);
-			}
-			else{
-/* display results */
-		    	echo "All the ".$difficulty." trails in ".$park." are:";
-				echo nl2br("\n\n");
-
-		    	while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-			    	echo $row['trail_Name'];
-				 /*   echo nl2br("\n");
-				    echo $row['street'];
-				    echo nl2br("\n");
-				    echo $row['city'].', '.  $row['state']. ' '.$row['zip_Code']; */
-				    echo nl2br("\n\n");
-			    }
-/* free result set */
-				mysqli_free_result($result);
-			}
+    $query="SELECT trail_Name, street, city, state, zip_Code, park_Name, difficulty FROM park JOIN trail, address WHERE (trail.park_ID=park.park_ID) AND (address.park_ID=park.park_ID)";
+    $parkOutputText = ":";
+    if (!($park=="")) {
+      $query = $query . "AND (park.park_Name='$park')";
+      $parkOutputText=" in ".$park." are:";
+    }
+    if (!($difficulty=="")) {
+      $query = $query . "AND (trail.difficulty='$difficulty')";
+    }
+		//$query="SELECT trail_Name FROM park JOIN trail WHERE (trail.park_ID=park.park_ID) AND (park.park_Name='$park') AND (trail.difficulty='$difficulty')";
+		$result = mysqli_query($link,$query);
+		
+    $difficultyString = "";
+    switch($difficulty) {
+      case 1:
+        $difficultyString = "easy";
+        break;
+      case 2:
+        $difficultyString = "moderate";
+        break;
+      case 3:
+        $difficultyString = "difficult";
+        break;
+      default:
+        break;
+    }
+		if (!$result){
+			echo 'Error fetching results: '.mysqli_error($link);
 		}
+    elseif (mysqli_num_rows($result) == 0){
+      echo "No results.";
+    }
+		else{
+/* display results */
+	    	echo "All ".$difficultyString." trails" . $parkOutputText;
+			echo nl2br("\n\n");
+
+	    	while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+		    	echo $row['trail_Name'];
+          echo nl2br("\n");
+          if (($park=="")){
+            echo $row['park_Name'];
+            echo nl2br("\n");
+          }
+			    echo $row['street'];
+			    echo nl2br("\n");
+			    echo $row['city'].', '.  $row['state']. ' '.$row['zip_Code'];
+			    echo nl2br("\n");
+          if (($difficulty=="")){
+            switch ($row['difficulty']) {
+              case '1':
+                echo "Difficulty: Easy";
+                break;
+              case '2':
+                echo "Difficulty: Moderate";
+                break;              
+              case '3':
+                echo "Difficulty: Difficult";
+                break;                
+              default:
+                echo "Error finding difficulty";
+                break;
+            }
+          }
+          echo nl2br("\n\n");          
+		    }
+		/* free result set */
+	mysqli_free_result($result);
 	}
+}
 
 
 /* *----------------------------------QUERY 3------------------------------------*/
@@ -215,41 +250,54 @@
 	}
 
 /* *----------------------------------QUERY 4------------------------------------*/
-    if (isset($_POST['submitquery4'])){
+if (isset($_POST['region'])){
+        $region=$_POST['region'];
 
-/* execute query */
-      	$query="SELECT trail_Name, trail_Type, street, city, state, zip_Code
-            FROM park, trail, address
-            WHERE region = 'West'
-            AND park.park_ID = address.park_ID
-            AND trail.park_ID = park.park_ID";
+      $query="SELECT trail_Name, trail_Type, street, city, state, zip_Code, region
+              FROM park, trail, address
+              WHERE park.park_ID = address.park_ID
+              AND trail.park_ID = park.park_ID";
 
-     	$result = mysqli_query($link,$query);
-
-    	if (!$result){
-          	echo 'Error fetching results: '.mysqli_error($link);
-     	}
-     
-    	else{
-/* display results */
-	        echo "All the trails in the Western region are:";
-	        echo nl2br("\n\n");
-
-	        while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-		        echo $row['trail_Name'];
-		        echo nl2br("\n");
-		        echo 'Trail Type: ' . $row['trail_Type'];
-		        echo nl2br("\n");
-		        echo $row['street'];
-		        echo nl2br("\n");
-		        echo $row['city'].', '.  $row['state']. ' '.$row['zip_Code'];
-		        echo nl2br("\n\n");
-	        }
-/* free result set */
-    		mysqli_free_result($result);
+        if (!($region=="")){
+          $query = $query . " AND (region = '$region')";
         }
 
-	}
+      /* execute query */
+
+      $result = mysqli_query($link,$query);
+
+      if (!$result){
+          echo 'Error fetching results: '.mysqli_error($link);
+      }
+      else{
+        /* display results */
+        if (($region=="")){
+          echo "All trails:";
+        }
+        else {
+          echo "All trails in the $region region:";         
+        }
+        echo nl2br("\n\n");
+
+        while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+          echo $row['trail_Name'];
+          echo nl2br("\n");
+          echo 'Trail Type: ' . $row['trail_Type'];
+          echo nl2br("\n");
+          echo $row['street'];
+          echo nl2br("\n");
+          echo $row['city'].', '.  $row['state']. ' '.$row['zip_Code'];
+          echo nl2br("\n");
+          if (($region=="")){
+            echo "Region: ". $row['region'];
+          }          
+          echo nl2br("\n\n");
+        }
+        /* free result set */
+    mysqli_free_result($result);
+        }
+
+}
 
 /* *----------------------------------QUERY 5------------------------------------*/
     if (isset($_POST['submitquery5'])){
